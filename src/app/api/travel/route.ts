@@ -12,16 +12,21 @@ export async function POST(req: Request) {
   const incoming = "How are you?";
   console.log("Incoming webhook message:", JSON.stringify(req.body, null, 2));
 
-  //   const chatCompletion = await openai.chat.completions.create({
-  //     messages: [{ role: 'user', content: incoming }],
-  //     model: 'gpt-3.5-turbo',
-  //   });
 
   const { entry } = await req.json();
 
   const message = entry?.[0]?.changes[0]?.value?.messages?.[0];
 
+  console.log('message', message?.type)
+
+    
+
+
   if (message?.type === "text") {
+    const chatCompletion = await openai.chat.completions.create({
+      messages: [{ role: 'user', content: message.text.body }],
+      model: 'gpt-3.5-turbo',
+    });
     // extract the business number to send the reply from it
     const business_phone_number_id =
       entry?.[0].changes?.[0].value?.metadata?.phone_number_id;
@@ -38,7 +43,7 @@ export async function POST(req: Request) {
       data: {
         messaging_product: "whatsapp",
         to: message.from,
-        text: { body: "Echo: " + message.text.body },
+        text: { body: chatCompletion.choices[0].message.content },
         // context: {
         //   message_id: message.id, // shows the message as a reply to the original user message
         // },
