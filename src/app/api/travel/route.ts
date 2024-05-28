@@ -10,15 +10,17 @@ const openai = new OpenAI({
 
 export async function POST(req: Request) {
   const incoming = "How are you?";
-  console.log("Incoming webhook message:", JSON.stringify(req.body, null, 2));
+  
 
 
   const { entry } = await req.json();
 
   const message = entry?.[0]?.changes[0]?.value?.messages?.[0];
 
+
   console.log('message', message?.type)
 
+  console.log("Incoming webhook message:", message.text.body);
     
 
 
