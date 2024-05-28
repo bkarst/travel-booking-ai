@@ -6,7 +6,6 @@ integrate with booking.com
 
 
 
-
 https://developers.facebook.com/docs/whatsapp/cloud-api/get-started-for-solution-partners#subscribe-waba
 
 curl -X POST \
