@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
   if (message?.type === "text") {
     const chatCompletion = await openai.chat.completions.create({
-      messages: [{ role: 'user', content: message.text.body }],
+      messages: [{ role: 'user', content: message.text.body }, { role: 'system', content: "You are a travel booking agent. Keep your responses. concise and to the point." }],
       model: 'gpt-3.5-turbo',
     });
     // extract the business number to send the reply from it
