@@ -16,11 +16,6 @@ export async function POST(req: Request) {
   const { entry } = await req.json();
 
   const message = entry?.[0]?.changes[0]?.value?.messages?.[0];
-
-
-  console.log('message', message?.type)
-
-  console.log("Incoming webhook message:", message.text.body);
     
 
 
