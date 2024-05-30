@@ -4,11 +4,14 @@ import OpenAI from "openai";
 import axios from "axios";
 const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
 
-const openai = new OpenAI({
-  apiKey: process.env["OPENAI_API_KEY"] || "fasdfasdfasdf", // This is the default and can be omitted
-});
+
 
 export async function POST(req: Request) {
+
+  const openai = new OpenAI({
+    apiKey: process.env["OPENAI_API_KEY"] || "fasdfasdfasdf", // This is the default and can be omitted
+  });
+  
   const incoming = "How are you?";
   
 
