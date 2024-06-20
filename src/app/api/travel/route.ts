@@ -4,8 +4,6 @@ import OpenAI from "openai";
 import axios from "axios";
 const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
 
-
-
 export async function POST(req: Request) {
 
   const openai = new OpenAI({
